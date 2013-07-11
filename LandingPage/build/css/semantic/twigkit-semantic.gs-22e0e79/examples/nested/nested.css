@@ -1,0 +1,55 @@
+@import '../../stylesheets/reset.css';
+
+@import '../../stylesheets/demo.css';
+body {
+  width: 100%;
+  *zoom: 1;
+}
+body:before,
+body:after {
+  content: "";
+  display: table;
+}
+body:after {
+  clear: both;
+}
+div.center {
+  margin: 0 auto;
+  overflow: hidden;
+}
+header#top {
+  margin-bottom: 1em;
+}
+#maincolumn {
+  display: inline;
+  float: left;
+  width: 72.91666666666666%;
+  margin: 0 1.0416666666666665%;
+}
+#maincolumn ul#boxes {
+  display: block;
+  width: 102.77777777777777%;
+  margin: 0 -1.3888888888888888%;
+  *zoom: 1;
+}
+#maincolumn ul#boxes:before,
+#maincolumn ul#boxes:after {
+  content: "";
+  display: table;
+}
+#maincolumn ul#boxes:after {
+  clear: both;
+}
+#maincolumn ul#boxes li {
+  display: inline;
+  float: left;
+  width: 30.555555555555557%;
+  margin: 0 1.3888888888888888%;
+  margin-bottom: 1em;
+}
+#sidebar {
+  display: inline;
+  float: left;
+  width: 22.916666666666664%;
+  margin: 0 1.0416666666666665%;
+}

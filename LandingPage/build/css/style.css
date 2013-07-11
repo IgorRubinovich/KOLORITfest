@@ -1,0 +1,110 @@
+@import url(http://fonts.googleapis.com/css?family=Russo+One&subset=latin,cyrillic);
+
+@import url(http://fonts.googleapis.com/css?family=Comfortaa&subset=latin,cyrillic);
+body {
+  width: 100%;
+  *zoom: 1;
+}
+body:before,
+body:after {
+  content: "";
+  display: table;
+}
+body:after {
+  clear: both;
+}
+.languages {
+  list-style: none;
+}
+.languages li {
+  display: inline;
+}
+h1 {
+  font-family: "Russo One";
+  font-size: 50pt;
+  margin-top: 0;
+}
+.heading {
+  display: block;
+  width: 92.24999999999999%;
+  margin: 0 -1.125%;
+  *zoom: 1;
+  font-family: "Russo One";
+}
+.heading:before,
+.heading:after {
+  content: "";
+  display: table;
+}
+.heading:after {
+  clear: both;
+}
+.heading .kolorit {
+  background: url("/images/KOLORITfest-logo.png") no-repeat;
+  display: inline;
+  float: left;
+  width: 20.625%;
+  margin: 0 0.9375%;
+  color: #E0342A;
+  font-size: 100pt;
+  height: 1000px;
+}
+.heading .fest {
+  display: inline;
+  float: left;
+  width: 43.125%;
+  margin: 0 0.9375%;
+  color: white;
+  font-size: 100pt;
+  text-shadow: -1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000;
+  margin-top: -100px;
+}
+.heading .firstline {
+  display: inline;
+  float: left;
+  width: 28.125%;
+  margin: 0 0.9375%;
+}
+.heading .firstline .subtitle {
+  font-size: 30pt;
+}
+.heading .firstline .dates {
+  font-size: 50pt;
+  color: #FEEC1D;
+  line-height: 40pt;
+}
+.countries {
+  background-color: #FFB41D;
+  height: 1000px;
+}
+.vocal-contest {
+  background-color: #01cfff;
+  height: 1000px;
+}
+.music-fest {
+  background-color: #00ef49;
+  height: 1000px;
+}
+.film-fest {
+  background-color: #6d00a1;
+  height: 1000px;
+}
+.conference {
+  background-color: #ffa82a;
+  height: 1000px;
+}
+.footer {
+  background-color: #00ADF1;
+  height: 500px;
+}
+.registration {
+  height: 1000px;
+}
+.section h1 {
+  display: inline;
+  float: left;
+  width: 20.625%;
+  margin: 0 0.9375%;
+  padding-left: 100px;
+  color: white;
+}

@@ -1,0 +1,43 @@
+@import '../../stylesheets/reset.css';
+
+@import '../../stylesheets/demo.css';
+body {
+  width: 100%;
+  *zoom: 1;
+}
+body:before,
+body:after {
+  content: "";
+  display: table;
+}
+body:after {
+  clear: both;
+}
+div.center {
+  width: 960px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+header#top {
+  display: inline;
+  float: left;
+  width: 940px;
+  margin: 0 10px;
+  margin-bottom: 1em;
+}
+#push {
+  display: inline;
+  float: left;
+  width: 620px;
+  margin: 0 10px;
+  margin-left: 330px;
+  margin-bottom: 1em;
+}
+#pull {
+  display: inline;
+  float: left;
+  width: 620px;
+  margin: 0 10px;
+  margin-right: 330px;
+  margin-bottom: 1em;
+}

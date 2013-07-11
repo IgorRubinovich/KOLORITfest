@@ -1,0 +1,63 @@
+!!! 5
+html(lang='en')
+	head
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=1024')
+		meta(name='apple-mobile-web-app-capable', content='yes')
+		title Creative BU - Creative Bureau
+		meta(name='description', content='Creative BU - Creative Bureau is a full-cycle creative agency. Check our offering and contact us today!')
+		meta(name='author', content='http://creativebu.com')
+		
+		link(href='/css/style.css', rel='stylesheet')
+		link(rel='shortcut icon', href='favicon.png')
+		link(rel='apple-touch-icon', href='apple-touch-icon.png')
+
+
+	body.no-support-3d
+		//- For example this fallback message is only visible when there is `impress-not-supported` class on body.
+
+
+		languages = [{"path":"en", "lang":"eng"}, {"path":"cs", "lang":"čes"}, {"path":"ru", "lang":"рус"}]
+		ul.languages(style="pointer-events: all")
+			each l in languages
+				li 
+					if(l.path != page.url.split("/")[1])
+						<a href="/#{l.path}/">#{l.lang}</a>
+					else
+						| #{l.lang}
+
+		.heading.section
+			.kolorit
+				| 
+				.fest
+					| 
+			.firstline
+				.dates
+					| 3-16 
+					| октября
+					| Прага
+				.subtitle
+					| международный музыкальный фестиваль русскоязычной культуры
+				
+		.countries.section
+			h1 страны
+		
+		.vocal-contest.section
+			h1 вокальный конкурс
+		.music-fest.section
+			h1 музыкальный фестиваль
+		.film-fest.section
+			h1 фестиваль короткометражных фильмов
+		.conference.section
+			h1 конференция
+			
+		.registration.section
+			h1 registration
+			
+		.footer.section
+			h1 footer
+		
+				
+				
+				
+				
