@@ -40,7 +40,7 @@ h1 {
   clear: both;
 }
 .heading .kolorit {
-  background: url("/images/KOLORITfest-logo.png") no-repeat;
+  background: url("../images/KOLORITfest-logo.png") no-repeat;
   display: inline;
   float: left;
   width: 20.625%;
