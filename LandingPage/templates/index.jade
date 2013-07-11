@@ -8,12 +8,37 @@ html(lang='en')
 		meta(name='description', content='Creative BU - Creative Bureau is a full-cycle creative agency. Check our offering and contact us today!')
 		meta(name='author', content='http://creativebu.com')
 		
+		script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js')
+		script(src='../js/jquery.smooth-scroll.min.js')
 		link(href='../css/style.css', rel='stylesheet')
 		link(rel='shortcut icon', href='favicon.png')
 		link(rel='apple-touch-icon', href='apple-touch-icon.png')
 
-
-	body.no-support-3d
+	script
+		$(document).on("ready", function(){
+			// init fixed menu
+			$(window).scroll(function(){
+					//console.log("document: " + $(document).scrollTop() + " bottom-nav: " + ($('.registration').offset().top - 900))
+						if($("#bottom-nav").css("position") == "fixed" && ($('#registration').offset().top <= $('#bottom-nav').offset().top))
+							$("#bottom-nav").css("position", "static");
+			
+						if($("#bottom-nav").css("position") == "static" && ($(document).scrollTop() < $('#registration').offset().top - 700))
+								$("#bottom-nav").css("position", "fixed");
+				})
+				
+			// jquery.smooth-scroll.min.js
+			//$('.navigator').pageScroller({
+			//	navigation: '#navigation',
+			//	animationType: 'easeInOutElastic'
+			//});
+			
+			$(".bottom-nav").on("click",function(){
+				console.log("click!")
+				$(document).scrollTop($('.registration').offset().top + 200);
+			})
+		})
+		
+	body.no-support-3d#top
 		//- For example this fallback message is only visible when there is `impress-not-supported` class on body.
 
 
@@ -26,7 +51,7 @@ html(lang='en')
 					else
 						| #{l.lang}
 
-		.heading.section
+		#heading.section
 			.kolorit
 				| 
 				.fest
@@ -39,22 +64,32 @@ html(lang='en')
 				.subtitle
 					| международный музыкальный фестиваль русскоязычной культуры
 				
-		.countries.section
+		#countries.section
 			h1 страны
 		
-		.vocal-contest.section
+		#vocal-contest.section
 			h1 вокальный конкурс
-		.music-fest.section
+		#music-fest.section
 			h1 музыкальный фестиваль
-		.film-fest.section
+		#film-fest.section
 			h1 фестиваль короткометражных фильмов
-		.conference.section
+		#conference.section
 			h1 конференция
+
+		#bottom-nav.section
+			h1 Kf
+			#navigation
+				a(href="#top") /\
+				a(href="#music-fest") музыкальный фестиваль
+				a(href="#vocal-contest") вокальный конкурс
+				a(href="#film-fest") фестиваль короткометражных фильмов
+				a(href="#conference") конференция
+
 			
-		.registration.section
-			h1 registration
+		#registration.section
+			h1 Registration
 			
-		.footer.section
+		#footer.section
 			h1 footer
 		
 				

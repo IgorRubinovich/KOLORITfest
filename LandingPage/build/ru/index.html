@@ -7,11 +7,34 @@
     <title>Creative BU - Creative Bureau</title>
     <meta name="description" content="Creative BU - Creative Bureau is a full-cycle creative agency. Check our offering and contact us today!">
     <meta name="author" content="http://creativebu.com">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.min.js"></script>
     <link href="../css/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
   </head>
-  <body class="no-support-3d">
+  <script>
+    $(document).on("ready", function(){
+     // init fixed menu
+     $(window).scroll(function(){
+       //console.log("document: " + $(document).scrollTop() + " bottom-nav: " + ($('.registration').offset().top - 900))
+        if($("#bottom-nav").css("position") == "fixed" && ($('#registration').offset().top <= $('#bottom-nav').offset().top))
+         $("#bottom-nav").css("position", "static");
+        if($("#bottom-nav").css("position") == "static" && ($(document).scrollTop() < $('#registration').offset().top - 700))
+          $("#bottom-nav").css("position", "fixed");
+     })
+     // jquery.smooth-scroll.min.js
+     //$('.navigator').pageScroller({
+     //	navigation: '#navigation',
+     //	animationType: 'easeInOutElastic'
+     //});
+     $(".bottom-nav").on("click",function(){
+      console.log("click!")
+      $(document).scrollTop($('.registration').offset().top + 200);
+     })
+    })
+  </script>
+  <body id="top" class="no-support-3d">
     <ul style="pointer-events: all" class="languages">
       <li> <a href="/en/">eng</a>
       </li>
@@ -20,7 +43,7 @@
       <li> рус
       </li>
     </ul>
-    <div class="heading section">
+    <div id="heading" class="section">
       <div class="kolorit"> 
         <div class="fest"> </div>
       </div>
@@ -33,25 +56,29 @@
         <div class="subtitle">международный музыкальный фестиваль русскоязычной культуры</div>
       </div>
     </div>
-    <div class="countries section">
+    <div id="countries" class="section">
       <h1>страны</h1>
     </div>
-    <div class="vocal-contest section">
+    <div id="vocal-contest" class="section">
       <h1>вокальный конкурс</h1>
     </div>
-    <div class="music-fest section">
+    <div id="music-fest" class="section">
       <h1>музыкальный фестиваль</h1>
     </div>
-    <div class="film-fest section">
+    <div id="film-fest" class="section">
       <h1>фестиваль короткометражных фильмов</h1>
     </div>
-    <div class="conference section">
+    <div id="conference" class="section">
       <h1>конференция</h1>
     </div>
-    <div class="registration section">
-      <h1>registration</h1>
+    <div id="bottom-nav" class="section">
+      <h1>Kf</h1>
+      <div id="navigation"><a href="#top">/\</a><a href="#music-fest">музыкальный фестиваль</a><a href="#vocal-contest">вокальный конкурс</a><a href="#film-fest">фестиваль короткометражных фильмов</a><a href="#conference">конференция</a></div>
     </div>
-    <div class="footer section">
+    <div id="registration" class="section">
+      <h1>Registration</h1>
+    </div>
+    <div id="footer" class="section">
       <h1>footer</h1>
     </div>
   </body>

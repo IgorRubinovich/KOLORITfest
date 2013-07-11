@@ -24,22 +24,22 @@ h1 {
   font-size: 50pt;
   margin-top: 0;
 }
-.heading {
+#heading {
   display: block;
   width: 92.24999999999999%;
   margin: 0 -1.125%;
   *zoom: 1;
   font-family: "Russo One";
 }
-.heading:before,
-.heading:after {
+#heading:before,
+#heading:after {
   content: "";
   display: table;
 }
-.heading:after {
+#heading:after {
   clear: both;
 }
-.heading .kolorit {
+#heading .kolorit {
   background: url("../images/KOLORITfest-logo.png") no-repeat;
   display: inline;
   float: left;
@@ -49,7 +49,7 @@ h1 {
   font-size: 100pt;
   height: 1000px;
 }
-.heading .fest {
+#heading .fest {
   display: inline;
   float: left;
   width: 43.125%;
@@ -59,46 +59,60 @@ h1 {
   text-shadow: -1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000;
   margin-top: -100px;
 }
-.heading .firstline {
+#heading .firstline {
   display: inline;
   float: left;
   width: 28.125%;
   margin: 0 0.9375%;
 }
-.heading .firstline .subtitle {
+#heading .firstline .subtitle {
   font-size: 30pt;
 }
-.heading .firstline .dates {
+#heading .firstline .dates {
   font-size: 50pt;
   color: #FEEC1D;
   line-height: 40pt;
 }
-.countries {
+#countries {
   background-color: #FFB41D;
   height: 1000px;
 }
-.vocal-contest {
+#vocal-contest {
   background-color: #01cfff;
   height: 1000px;
 }
-.music-fest {
+#music-fest {
   background-color: #00ef49;
   height: 1000px;
 }
-.film-fest {
+#film-fest {
   background-color: #6d00a1;
   height: 1000px;
 }
-.conference {
+#conference {
   background-color: #ffa82a;
   height: 1000px;
 }
-.footer {
+#footer {
   background-color: #00ADF1;
   height: 500px;
 }
-.registration {
+#registration {
   height: 1000px;
+}
+#bottom-nav {
+  height: 100px;
+  background: white;
+  bottom: 0px;
+  width: 100%;
+  position: fixed;
+}
+#bottom-nav h1 {
+  color: black;
+}
+#registration {
+  height: 400px;
+  background: silver;
 }
 .section h1 {
   display: inline;
@@ -107,4 +121,15 @@ h1 {
   margin: 0 0.9375%;
   padding-left: 100px;
   color: white;
+}
+.section a,
+.section a:hover,
+.section a:active,
+.section a:visited {
+  font-family: "Russo One";
+  color: black;
+  margin-left: 50px;
+  width: 20px;
+  line-height: 80px;
+  text-decoration: none;
 }
