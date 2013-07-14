@@ -9,6 +9,7 @@
     <meta name="author" content="http://creativebu.com">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="../js/jquery.smooth-scroll.min.js"></script>
+    <script src="../js/jquery.collapsible-menus.min.js"></script>
     <link href="../css/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -17,10 +18,15 @@
     $(document).on("ready", function(){
      // init fixed menu
      $(window).scroll(function(){
-       //console.log("document: " + $(document).scrollTop() + " bottom-nav: " + ($('.registration').offset().top - 900))
+       console.log(
+        "document: " + $(document).scrollTop() + "\n" +
+        "bottom-nav: " + $('#bottom-nav').offset().top + "\n" +
+        "registration: " + $('#registration').offset().top + "\n" +
+        "bottom-nav: " + $("#bottom-nav").css("position")
+       )
         if($("#bottom-nav").css("position") == "fixed" && ($('#registration').offset().top <= $('#bottom-nav').offset().top))
          $("#bottom-nav").css("position", "static");
-        if($("#bottom-nav").css("position") == "static" && ($(document).scrollTop() < $('#registration').offset().top - 700))
+        if($("#bottom-nav").css("position") == "static" && ($(document).scrollTop() + $(window).height()) < $('#registration').offset().top)
           $("#bottom-nav").css("position", "fixed");
      })
      // jquery.smooth-scroll.min.js
@@ -32,20 +38,72 @@
       console.log("click!")
       $(document).scrollTop($('.registration').offset().top + 200);
      })
+     var v;
+     $('#menu-root').collapsible({
+      effect: 'none',             // The effect to use when expanding and collapsiing the menu. Accepts none, slide, or fade. Default: none.
+      initialCollapse: true       // When true, collapses the menu when the page loads. Default: true
+     });
+     $('#main-selecttion').collapsible({
+      effect: 'slide',             // The effect to use when expanding and collapsiing the menu. Accepts none, slide, or fade. Default: none.
+      initialCollapse: true       // When true, collapses the menu when the page loads. Default: true
+     });
+     console.log(v)
     })
   </script>
   <body id="top" class="no-support-3d">
     <ul style="pointer-events: all" class="languages">
-      <li> <a href="/en/">eng</a>
+      <li><a href="/en/">eng</a>
       </li>
-      <li> <a href="/cs/">čes</a>
+      <li><a href="/cs/">čes</a>
       </li>
-      <li> рус
+      <li>рус
       </li>
     </ul>
+    <!--		a(href="#music-fest") музыкальный фестиваль-->
+    <!--		a(href="#vocal-contest") вокальный конкурс-->
+    <!--		a(href="#film-fest") фестиваль короткометражных фильмов-->
+    <!--		a(href="#conference") П-->
+    <div id="menu">
+      <ul id="menu-root">
+        <li>Countries</li>
+        <li> 
+          <ul>
+            <li>Belorussia</li>
+            <li>Germany</li>
+            <li>Israel</li>
+            <li>Russia</li>
+            <li>Ukraine</li>
+            <li>Czech Republic</li>
+            <li>UK</li>
+            <li>Slovakia</li>
+            <li>Greece</li>
+            <li>Lithuania</li>
+            <li>Netherlands</li>
+            <li>Finland</li>
+            <li>France</li>
+            <li>Czech Republic</li>
+          </ul>
+        </li>
+        <li>Music Festival</li>
+        <li> 
+          <ul>
+            <li>a</li>
+            <li>b</li>
+            <li>c</li>
+            <li>d</li>
+          </ul>
+        </li>
+        <li>Film festival</li>
+        <li>Vocal Competition</li>
+        <li>Conference</li>
+        <li>Registration</li>
+      </ul>
+    </div>
     <div id="heading" class="section">
-      <div class="kolorit"> 
-        <div class="fest"> </div>
+      <div class="logo">
+        <div class="kolorit"> 
+          <div class="fest"> </div>
+        </div>
       </div>
       <div class="firstline">
         <div class="dates">
@@ -56,27 +114,72 @@
         <div class="subtitle">международный музыкальный фестиваль русскоязычной культуры</div>
       </div>
     </div>
-    <div id="countries" class="section">
-      <h1>страны</h1>
-    </div>
-    <div id="vocal-contest" class="section">
-      <h1>вокальный конкурс</h1>
-    </div>
-    <div id="music-fest" class="section">
-      <h1>музыкальный фестиваль</h1>
-    </div>
-    <div id="film-fest" class="section">
-      <h1>фестиваль короткометражных фильмов</h1>
-    </div>
-    <div id="conference" class="section">
-      <h1>конференция</h1>
-    </div>
-    <div id="bottom-nav" class="section">
-      <h1>Kf</h1>
-      <div id="navigation"><a href="#top">/\</a><a href="#music-fest">музыкальный фестиваль</a><a href="#vocal-contest">вокальный конкурс</a><a href="#film-fest">фестиваль короткометражных фильмов</a><a href="#conference">конференция</a></div>
+    <ul id="main-selecttion">	
+      <li class="countries section title">
+        <h1>страны</h1>
+      </li>
+      <li class="countries section">
+        <ul>
+          <li>контент про страны</li>
+        </ul>
+      </li>
+      <li class="music-fest section title">
+        <h1>музыкальный фестиваль</h1>
+      </li>
+      <li class="music-fest section">
+        <ul>
+          <li>
+            <div class="music-fest section"></div>музыкальный фестиваль content
+          </li>
+        </ul>
+      </li>
+      <li class="film-fest section title">
+        <h1>фестиваль короткометражных фильмов</h1>
+      </li>
+      <li class="film-fest section">
+        <ul>
+          <li>Film fest content</li>
+        </ul>
+      </li>
+      <li class="vocal-contest section title">
+        <h1>вокальный конкурс</h1>
+      </li>
+      <li class="vocal-contest section">
+        <ul>
+          <li>
+            <div class="image"><img src="https://lh3.googleusercontent.com/-Ta-N-_8moJ4/TlNwMJf_JuI/AAAAAAAAEDs/HQxoWtOJMo4/s500/IMG_2766.jpg"></div>
+            <div class="description">
+              KOLORITfest естественным образом продолжает традицию серии мультикультурных русскоязычных конурсов-фестивалей "Колорит", которые Клуб ПРАГматики проводил в Праге в 2009, 2010, 2011 и 2012 годах.
+              В настоящее время KOLORITfest находится в стадии подготовки, в ходе которой пройдет набор делегатов с помощью открытого конкурса, кастингов, интервью и предварительных отборочных туров.
+              Расписание мероприятий, новости, полезная информация и контакты будут опубликованы на официальном сайте KOLORITfest по адресу http://koloritfest.org.
+              Мы призываем спонсоров и медиа-партнеров, связаться с нами по вопросам рекламных возможностей и условий партнерства.
+              Мы также призываем к творческих профессионалов, энтузиастов и добровольцев, желающих внести свой вклад в фестиваль, связаться с нами, чтобы узнать, как они могут помочь нам сделать это еще событие еще лучше.
+              Организаторам не терпится увидеть разнообразе красок, которые участники привнесут в фестиваль. Мы уверены, что картина, которую мы вместе нарисуем, будет стоить миллиона слов. Поехали!
+              <div><a>визитка 1</a><a>визитка 2</a><a>визитка 3</a></div>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li class="conference section title">
+        <h1>конференция</h1>
+      </li>
+      <li class="conference section">
+        <ul>
+          <li>конференция content</li>
+        </ul>
+      </li>
+    </ul>
+    <div id="bottom-nav">
+      <div id="spotlight">
+        <div class="castings">
+          <div class="title">кастинги<br></div>
+          <div class="dates">7, 14 августа</div>
+        </div>
+        <div class="submit-button-col"><a href="#registration" class="submit-button"><span class="submit-button-padding"><span class="submit">подать </span><span class="request">заявку</span></span></a></div>
+      </div>
     </div>
     <div id="registration" class="section">
-      <h1>Registration</h1>
+      <h1>регистрация</h1>
     </div>
     <div id="footer" class="section">
       <h1>footer</h1>
