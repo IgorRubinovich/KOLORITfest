@@ -1,20 +1,47 @@
 @import './semantic/grid.less';
 
 @import url(http://fonts.googleapis.com/css?family=Russo+One&subset=latin,cyrillic);
-@import url(http://fonts.googleapis.com/css?family=Comfortaa&subset=latin,cyrillic);
+@import url(http://fonts.googleapis.com/css?family=EB+Garamond);
 
 @column-width: 60;
 @gutter-width: 20;
 @columns: 12;
 
-@color-conference : #FFA82A;
-@color-vocal-contest : #01CFFF;
-@color-music-fest : #00EF49;
+
+
+@f_col : #ff7e0d;
+@k_color : #30a8ff;
+@o1_color :#48f40b;
+@l_color : #ff411a;
+@o2_color : #ffe01e;
+@r_color : #10e5c6;
+@i_color : #9c3df2;
+@t_color : #7af41a;
+
+@kk1 : @f_col;
+@kk2 : @k_color;
+@kk3 : @o1_color;
+@kk4 : @l_color;
+@kk5 : @o2_color;
+@kk6 : @r_color;
+@kk7 : @i_color;
+@kk8 : @t_color;
+
+@color-conference : @o2_color;
+@color-vocal-contest : @o1_color;;
+@color-music-fest : @k_color;
 @color-film-fest : #6D00A1;
 
+@page-padding : 100px;
 
 @total-width: 90%;
-.languages { 
+
+body
+{
+	margin : 0;
+}
+.languages {
+	.push(10);
 	list-style : none;
 	li { display : inline }
 }
@@ -23,30 +50,36 @@ h1
 	font-family: "Russo One";
 	font-size : 50pt;
 	margin-top: 0;
+	padding : 0;
 }
 
 #heading {
-	.row(10);
+	padding-top : 30px;
 	font-family: "Russo One";
-	.kolorit
-		{
-			background : url("../images/KOLORITfest-logo.png") no-repeat;
-			.column(3);
-			color : #E0342A;
-			font-size : 100pt;
-			height : 1000px;
-		}
-	.fest
-		{
-			.column(6);
-			color : white;
-			// color : rgba(255,255,255,0);
-			font-size : 100pt;
-			text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-			margin-top : -100px;
-		}
+	height : 270px;
+	background : white;
+	.logo
+	{
+		.column(5);
+		.kolorit
+			{
+				background : url("../images/KOLORITfest-logo.png") no-repeat 40px 70px;
+				height : 400px;
+				color : #E0342A;
+				font-size : 100pt;
+			}
+		.fest
+			{
+				color : white;
+				// color : rgba(255,255,255,0);
+				font-size : 100pt;
+				text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+				margin-top : -100px;
+			}
+	}
+	
 	.firstline { 
-		.column(4);
+		.column(7);
 		.subtitle
 			{
 				font-size : 30pt;
@@ -54,40 +87,72 @@ h1
 		.dates
 			{
 				font-size : 50pt;
-				color : #FEEC1D;
+				color : @o2_color;
 				line-height : 40pt;
 			}
 	}
 
 }
 
-#countries
+#main-selecttion{
+	padding : 0;
+	margin : 0;
+	li.title
 	{
-		background-color : #FFB41D;
+		padding  : 10px 0px;
+		height : 123px;
+		@media screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370)
+		{
+			height : 200px;
+		}
+	}
+
+}
+
+.countries
+	{
+		background-color : @kk1;
 		height : 1000px;
 	}
 
-#vocal-contest
+.vocal-contest
 	{
 		background-color : @color-vocal-contest;
 		height : 1000px;
+		@media screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370)
+		{
+			height : 2000px;
+		}
 	}
-#music-fest
+.music-fest
 	{
 		background-color : @color-music-fest;
 		height : 1000px;
+		@media screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370)
+		{
+			height : 2000px;
+		}
 	}
 	
-#film-fest
+.film-fest
 	{
 		background-color : @color-film-fest;
 		height : 1000px;
+		@media screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370)
+		{
+			height : 2000px;
+		}
+
 	}
 	
-#conference
+.conference
 	{
 		background-color : @color-conference;
 		height : 1000px;
+		@media screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370)
+		{
+			height : 2000px;
+		}
 	}
 
 #footer
@@ -100,28 +165,55 @@ h1
 	{
 		height : 1000px;
 	}
-#bottom-nav
-	{
-		height : 100px;
-		h1 { color : black; }
-		background : white;
-		bottom : 0px;
-		width : 100%;
-		position : fixed;
-	}	
 
 #registration
 	{
 		height : 400px;
 		background : silver;
-	}	
+	}
+	
 .section
 {
+	.title
+	{
+		height : 100px;
+		position : static;
+		@media screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370)
+		{
+			margin-left : @page-padding/2;
+			height : 150px;
+		}
+	}
+
 	h1
 	{
-		.column(3);
-		padding-left : 100px;
+		.column(12);
+		padding-top : 20px;
+		padding-bottom : 40px;
+		margin-left : @page-padding;
 		color : white;
+		line-height : 0.8em;
+	}
+	@media screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370){
+	h1
+		{
+			margin-left : @page-padding/2; 
+		}
+	}
+	
+	.image
+	{
+		.column(3);
+		margin-left : -8px;
+	}
+	.description
+	{
+		.column(7);
+		padding-left : 200px;
+		font-family : 'EB Garamond';
+		font-size : 17pt;
+		line-height : 1.8em;
+		padding-right : 150px;
 	}
 	a,a:hover,a:active,a:visited
 	{
@@ -133,4 +225,90 @@ h1
 		text-decoration : none;
 	}
 }
+
+#menu
+{
+	position : fixed;
+	right : 0;
+	top : 0;
+	width : 200px;
+	background : #eeeeee;
+	font-family : "EB Garamond";
+	font-size : 20px;
+	line-height : 20px;
+	li {
+		list-style : none;
+	}
+}
+
+#bottom-nav
+{
+	display: block;
+	position: fixed;
+	width: 100%;
+	height : 154px;
+	bottom : 0;
+	background : @k_color;
+	font-family : "Russo One";
+	font-size : 60pt;
+
+	#spotlight
+	{
+		height : 134px;
+		.castings
+		{
+			.column(4);
+			display: block;
+			position: relative;
+			width : 600px;
+			height : 134px;
+			left : @page-padding + 40px;
+			bottom : 0px;
+			.title {
+				color : @o2_color;
+				height : 0px;
+			}
+			.dates { 
+				padding : 0;
+				margin-top : 0px;
+				color : white; 
+				margin-top : 50px;
+				margin-left : 20px;
+			}
+		}
+		.submit-button-col
+		{
+			.push(8);
+			
+			a.submit-button {
+				&,&:hover,&:active,&:visited
+				{
+					text-decoration : none;
+				}
+				&:hover{
+					background : @o2_color;
+				}
+			}
+			.submit-button
+			{
+				display: block;
+				width : 330px;
+				height : 134px;
+				padding-left : 40px;
+				margin-top : -20px;
+				line-height : 52px;
+				position : relative;
+				border : red 20px solid;
+				.submit-button-padding
+				{
+					display : block;
+					margin-top : 10px;
+					.submit { color : white }
+					.request { color : black  }
+				}
+			}
+		}
+	}
+}
+
 

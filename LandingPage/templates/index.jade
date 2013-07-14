@@ -10,6 +10,7 @@ html(lang='en')
 		
 		script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js')
 		script(src='../js/jquery.smooth-scroll.min.js')
+		script(src='../js/jquery.collapsible-menus.min.js')
 		link(href='../css/style.css', rel='stylesheet')
 		link(rel='shortcut icon', href='favicon.png')
 		link(rel='apple-touch-icon', href='apple-touch-icon.png')
@@ -18,11 +19,17 @@ html(lang='en')
 		$(document).on("ready", function(){
 			// init fixed menu
 			$(window).scroll(function(){
-					//console.log("document: " + $(document).scrollTop() + " bottom-nav: " + ($('.registration').offset().top - 900))
+					console.log(
+						"document: " + $(document).scrollTop() + "\n" +
+						"bottom-nav: " + $('#bottom-nav').offset().top + "\n" +
+						"registration: " + $('#registration').offset().top + "\n" +
+						"bottom-nav: " + $("#bottom-nav").css("position")
+					)
+						
 						if($("#bottom-nav").css("position") == "fixed" && ($('#registration').offset().top <= $('#bottom-nav').offset().top))
 							$("#bottom-nav").css("position", "static");
 			
-						if($("#bottom-nav").css("position") == "static" && ($(document).scrollTop() < $('#registration').offset().top - 700))
+						if($("#bottom-nav").css("position") == "static" && ($(document).scrollTop() + $(window).height()) < $('#registration').offset().top)
 								$("#bottom-nav").css("position", "fixed");
 				})
 				
@@ -36,6 +43,19 @@ html(lang='en')
 				console.log("click!")
 				$(document).scrollTop($('.registration').offset().top + 200);
 			})
+			
+			var v;
+			$('#menu-root').collapsible({
+				effect: 'none',             // The effect to use when expanding and collapsiing the menu. Accepts none, slide, or fade. Default: none.
+				initialCollapse: true       // When true, collapses the menu when the page loads. Default: true
+			});
+			
+			$('#main-selecttion').collapsible({
+				effect: 'slide',             // The effect to use when expanding and collapsiing the menu. Accepts none, slide, or fade. Default: none.
+				initialCollapse: true       // When true, collapses the menu when the page loads. Default: true
+			});
+			
+			console.log(v)
 		})
 		
 	body.no-support-3d#top
@@ -45,17 +65,53 @@ html(lang='en')
 		languages = [{"path":"en", "lang":"eng"}, {"path":"cs", "lang":"čes"}, {"path":"ru", "lang":"рус"}]
 		ul.languages(style="pointer-events: all")
 			each l in languages
-				li 
+				li
 					if(l.path != page.url.split("/")[1])
 						<a href="/#{l.path}/">#{l.lang}</a>
 					else
 						| #{l.lang}
-
+		//		a(href="#music-fest") музыкальный фестиваль
+		//		a(href="#vocal-contest") вокальный конкурс
+		//		a(href="#film-fest") фестиваль короткометражных фильмов
+		//		a(href="#conference") П
+		
+		#menu
+			ul#menu-root
+				li Countries
+				li 
+					ul
+						li Belorussia
+						li Germany
+						li Israel
+						li Russia
+						li Ukraine
+						li Czech Republic
+						li UK
+						li Slovakia
+						li Greece
+						li Lithuania
+						li Netherlands
+						li Finland
+						li France
+						li Czech Republic
+				li Music Festival
+				li 
+					ul
+						li a
+						li b
+						li c
+						li d
+				li Film festival
+				li Vocal Competition
+				li Conference
+				li Registration
+			
 		#heading.section
-			.kolorit
-				| 
-				.fest
+			.logo
+				.kolorit
 					| 
+					.fest
+						| 
 			.firstline
 				.dates
 					| 3-16 
@@ -64,30 +120,79 @@ html(lang='en')
 				.subtitle
 					| международный музыкальный фестиваль русскоязычной культуры
 				
-		#countries.section
-			h1 страны
-		
-		#vocal-contest.section
-			h1 вокальный конкурс
-		#music-fest.section
-			h1 музыкальный фестиваль
-		#film-fest.section
-			h1 фестиваль короткометражных фильмов
-		#conference.section
-			h1 конференция
-
-		#bottom-nav.section
-			h1 Kf
-			#navigation
-				a(href="#top") /\
-				a(href="#music-fest") музыкальный фестиваль
-				a(href="#vocal-contest") вокальный конкурс
-				a(href="#film-fest") фестиваль короткометражных фильмов
-				a(href="#conference") конференция
-
+		ul#main-selecttion	
+			li.countries.section.title
+				h1 страны
+			li.countries.section
+				ul
+					li
+						| контент про страны
 			
+			li.music-fest.section.title
+				h1 музыкальный фестиваль
+			li.music-fest.section
+				ul
+					li
+						.music-fest.section
+						| музыкальный фестиваль content
+
+			li.film-fest.section.title
+				h1 фестиваль короткометражных фильмов
+			li.film-fest.section
+				ul
+					li
+						| Film fest content
+			
+			li.vocal-contest.section.title
+				h1 вокальный конкурс
+			li.vocal-contest.section
+				ul
+					li
+						.image
+							img(src="https://lh3.googleusercontent.com/-Ta-N-_8moJ4/TlNwMJf_JuI/AAAAAAAAEDs/HQxoWtOJMo4/s500/IMG_2766.jpg")
+						.description
+							| KOLORITfest естественным образом продолжает традицию серии мультикультурных русскоязычных конурсов-фестивалей "Колорит", которые Клуб ПРАГматики проводил в Праге в 2009, 2010, 2011 и 2012 годах.
+							| В настоящее время KOLORITfest находится в стадии подготовки, в ходе которой пройдет набор делегатов с помощью открытого конкурса, кастингов, интервью и предварительных отборочных туров.
+							| Расписание мероприятий, новости, полезная информация и контакты будут опубликованы на официальном сайте KOLORITfest по адресу http://koloritfest.org.
+							| Мы призываем спонсоров и медиа-партнеров, связаться с нами по вопросам рекламных возможностей и условий партнерства.
+							| Мы также призываем к творческих профессионалов, энтузиастов и добровольцев, желающих внести свой вклад в фестиваль, связаться с нами, чтобы узнать, как они могут помочь нам сделать это еще событие еще лучше.
+							| Организаторам не терпится увидеть разнообразе красок, которые участники привнесут в фестиваль. Мы уверены, что картина, которую мы вместе нарисуем, будет стоить миллиона слов. Поехали!
+
+							
+							div
+								a визитка 1
+								a визитка 2
+								a визитка 3
+				
+		
+			li.conference.section.title
+				h1 конференция
+			
+			li.conference.section
+				ul
+					li
+						| конференция content
+
+		#bottom-nav
+			#spotlight
+				.castings
+						.title кастинги<br>
+						.dates 7, 14 августа
+
+				.submit-button-col
+					a(href="#registration").submit-button
+						span.submit-button-padding
+							span.submit подать 
+							span.request заявку
+
+				//- a(href="#registration")
+				//- 	span.submit-button
+				//- 		span.submit-button-padding
+				//- 			span.submit подать 
+				//- 			span.request заявку
+							
 		#registration.section
-			h1 Registration
+			h1 регистрация
 			
 		#footer.section
 			h1 footer
