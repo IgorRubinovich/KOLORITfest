@@ -1,0 +1,39 @@
+!!! 5
+html(lang='en')
+	head
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=1024')
+		meta(name='apple-mobile-web-app-capable', content='yes')
+		title Creative BU - Creative Bureau
+		meta(name='description', content='Creative BU - Creative Bureau is a full-cycle creative agency. Check our offering and contact us today!')
+		meta(name='author', content='http://creativebu.com')
+		
+		script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js')
+		script(src='../js/jquery.smooth-scroll.min.js')
+		script(src='../js/jquery.collapsible-menus.min.js')
+		script(src='../js/jquery-jvectormap-1.2.2.min.js')
+		script(src='../js/jquery-jvectormap-world-mill-en.js')
+		link(href='../css/style.css', rel='stylesheet')
+		link(rel='shortcut icon', href='favicon.png')
+		link(rel='apple-touch-icon', href='apple-touch-icon.png')
+		script(src='../js/main.js')
+
+	body.no-support-3d#top
+		ul#main-selecttion
+			li.music-fest.section-title
+				h1 музыкальный фестиваль
+
+			li.music-fest.section
+				ul
+					li
+						.left-column
+							img(src="https://lh3.googleusercontent.com/-Ta-N-_8moJ4/TlNwMJf_JuI/AAAAAAAAEDs/HQxoWtOJMo4/s500/IMG_2766.jpg")
+						.right-column
+							p Приглашаются перспективные музыкальные коллективы, достигшие высокого уровня исполнения, но не имеющие серьезного географического охвата. Мы хотим дать приоритетную возможность перспективным, талантливым и творческим людям получить международное признание.<br>
+							p Преимущество отдается группам, исполняющим авторские песни на русском и другом языке.
+							p В Праге каждому коллективу предоставляется отдельное выступление на одной из пражских площадок, мастер классы и обмен опытом с коллегами из других стран.
+				
+
+			
+				
+				

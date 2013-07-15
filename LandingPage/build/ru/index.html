@@ -9,6 +9,9 @@
     <meta name="author" content="http://creativebu.com">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="../js/jquery.smooth-scroll.min.js"></script>
+    <script src="../js/jquery.collapsible-menus.min.js"></script>
+    <script src="../js/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="../js/jquery-jvectormap-world-mill-en.js"></script>
     <link href="../css/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -17,10 +20,15 @@
     $(document).on("ready", function(){
      // init fixed menu
      $(window).scroll(function(){
-       //console.log("document: " + $(document).scrollTop() + " bottom-nav: " + ($('.registration').offset().top - 900))
+       /*console.log(
+        "document: " + $(document).scrollTop() + "\n" +
+        "bottom-nav: " + $('#bottom-nav').offset().top + "\n" +
+        "registration: " + $('#registration').offset().top + "\n" +
+        "bottom-nav: " + $("#bottom-nav").css("position")
+       )*/
         if($("#bottom-nav").css("position") == "fixed" && ($('#registration').offset().top <= $('#bottom-nav').offset().top))
          $("#bottom-nav").css("position", "static");
-        if($("#bottom-nav").css("position") == "static" && ($(document).scrollTop() < $('#registration').offset().top - 700))
+        if($("#bottom-nav").css("position") == "static" && ($(document).scrollTop() + $(window).height()) < $('#registration').offset().top)
           $("#bottom-nav").css("position", "fixed");
      })
      // jquery.smooth-scroll.min.js
@@ -28,55 +36,337 @@
      //	navigation: '#navigation',
      //	animationType: 'easeInOutElastic'
      //});
-     $(".bottom-nav").on("click",function(){
-      console.log("click!")
-      $(document).scrollTop($('.registration').offset().top + 200);
+     // Init menus
+     var v;
+     $('#menu-root').collapsible({
+      effect: 'none',             // The effect to use when expanding and collapsiing the menu. Accepts none, slide, or fade. Default: none.
+      initialCollapse: true       // When true, collapses the menu when the page loads. Default: true
+     });
+     $('#main-selecttion').collapsible({
+      effect: 'slide',             // The effect to use when expanding and collapsiing the menu. Accepts none, slide, or fade. Default: none.
+      initialCollapse: false       // When true, collapses the menu when the page loads. Default: true
+     });
+     $('#countries_info').collapsible({
+      effect: 'true',             // The effect to use when expanding and collapsiing the menu. Accepts none, slide, or fade. Default: none.
+      initialCollapse: true   
      })
+     var _countries = ['BY','CZ','FI','FR','DE','GR','IL','LT','NL','RU','SK','GB','UA'];
+     var countries = [];
+     var countriesMenuItemsByCode = {}
+     var currentEl = 0;
+     var countries_menu_items = $("#countries_info > li")
+     for(var i = 0; i < _countries.length; i++)
+     {
+      countries[_countries[i]] = 1
+      countriesMenuItemsByCode[_countries[i]] = countries_menu_items[i*2]
+      var closeHandler = 
+      $(countriesMenuItemsByCode[_countries[i]]).on("click", function(ev){
+        console.log("currentEl: " + currentEl + " ev.toElement: " + ev)
+        if(ev)
+        {
+         if(currentEl)
+          $($(currentEl).siblings[0]).hide()
+         currentEl = ev.toElement
+        }
+      })
+      console.log(i*2 + ": " + countries_menu_items[i*2].innerHTML)
+     }
+     console.log(countries)
+     vectorMap = new jvm.WorldMap({
+          map: 'world_mill_en',
+          container: $('#map'),
+          backgroundColor: 'none',
+          regionStyle: {
+           initial: {
+            fill: '#FF8E32'
+           },
+           selected: {
+            fill: '#F4A582'
+           }
+          },
+          series: {
+           regions: [{
+            scale: {'1':'white', undefined:'red'},
+            attribute: 'fill'
+           }]
+          },
+          onRegionClick: function(e, code, el){
+           //el.html(el.html()+' - '+code);
+           if(currentEl)
+            $(currentEl).click()
+            
+           $(countriesMenuItemsByCode[code]).trigger("click")
+           
+           console.log(code)
+           console.log(countriesMenuItemsByCode)
+           console.log(countriesMenuItemsByCode[code])
+          }
+     });
+     vectorMap.series.regions[0].setValues(countries);
+     vectorMap.setFocus(_countries)
+     vectorMap.setFocus(4.5,.55,.36)
+     console.log(vectorMap)
     })
   </script>
   <body id="top" class="no-support-3d">
-    <ul style="pointer-events: all" class="languages">
-      <li> <a href="/en/">eng</a>
+    <ul style="pointer-events: all" class="topmenu">
+      <li><a href="/en/">eng</a>
       </li>
-      <li> <a href="/cs/">čes</a>
+      <li><a href="/cs/">čes</a>
       </li>
-      <li> рус
+      <li>рус
       </li>
+      <li>blog</li>
+      <li> <a href="http://cmpip.org">CMPI</a></li>
+      <li>история фестиваля</li>
+      <li>для прессы</li>
     </ul>
+    <!--		a(href="#music-fest") музыкальный фестиваль-->
+    <!--		a(href="#vocal-contest") вокальный конкурс-->
+    <!--		a(href="#film-fest") фестиваль короткометражных фильмов-->
+    <!--		a(href="#conference") П-->
+    <div id="menu">
+      <ul id="menu-root">
+        <li>Countries</li>
+        <li>
+          <ul>
+            <li>Belorussia</li>
+            <li>Czech Republic</li>
+            <li>Finland</li>
+            <li>France</li>
+            <li>Germany</li>
+            <li>Greece</li>
+            <li>Israel</li>
+            <li>Lithuania</li>
+            <li>Netherlands</li>
+            <li>Russia</li>
+            <li>Slovakia</li>
+            <li>UK</li>
+            <li>Ukraine</li>
+          </ul>
+        </li>
+        <li>Music Festival</li>
+        <li> 
+          <ul>
+            <li>a</li>
+            <li>b</li>
+            <li>c</li>
+            <li>d</li>
+          </ul>
+        </li>
+        <li>Film festival</li>
+        <li>Vocal Competition</li>
+        <li>Conference</li>
+        <li>Registration</li>
+      </ul>
+    </div>
     <div id="heading" class="section">
-      <div class="kolorit"> 
-        <div class="fest"> </div>
-      </div>
-      <div class="firstline">
-        <div class="dates">
-          3-16 
-          октября
-          Прага
+      <div class="logo">
+        <div class="kolorit"> 
+          <div class="fest"> </div>
         </div>
         <div class="subtitle">международный музыкальный фестиваль русскоязычной культуры</div>
       </div>
+      <div class="firstline">
+        <div class="dates">
+          3-16<br>
+          октября<br>
+          Прага
+        </div>
+      </div>
+      <div class="news">
+        <p><b>Впервые вместе на одной сцене в прекрасном городе Прага! Уже совсем скоро - не упусти свой шанс стать звездой!</b></p>
+        <p>Уже пятый сезон Клуб ПРАГматики проводит пражский музыкальный фестиваль «KOLORITfest 2013».  На этот раз все гораздо шире, выше и масштабнее – мы не только пригласили двенадцать европейских стран принять участие в конкурсе, но и расширили категории выступлений:</p>
+        <p>Соло вокалисты любых стилей</p>
+        <p>Музыкальные группы всех направлений и впервые – режиссеры и создатели короткометражных фильмов</p>
+        <p>Мечтаешь о творческой карьере или хочешь поделиться своим талантом?</p>
+        <p>Целенаправленно идешь к своей мечте и видишь себя на большой сцене?				 </p>
+        <p>Тогда у тебя есть все шансы… Прими участие в фестивале «KOLORITfest 2013»</p>
+        <p>Мы приглашаем всех желающих принять участие в конкурсе Колорит 2013, где можно осуществить свою мечту, поделиться своим талантом, познакомиться с огромным количеством интересных людей, поучиться у мастеров сцены и вокала, здесь можно все…</p>
+      </div>
+      <div class="heading-text">
+        <column></column>
+      </div>
     </div>
-    <div id="countries" class="section">
-      <h1>страны</h1>
+    <ul id="main-selecttion">	
+      <li class="countries section title">
+        <h1>страны</h1>
+      </li>
+      <li class="countries section">
+        <ul>
+          <li>
+            <div class="description">
+              <div id="map"></div>
+            </div>
+            <div class="image">
+              <ul id="countries_info">
+                <li>Belorussia</li>
+                <li>	
+                  <ul> 
+                    <li>Белорусское Молодежное Общественное Объединение “Новые лица”</li>
+                  </ul>
+                </li>
+                <li>Czech Republic</li>
+                <li>	
+                  <ul> 
+                    <li>Клуб ПРАГматики</li>
+                  </ul>
+                </li>
+                <li>Finland</li>
+                <li>	
+                  <ul> 
+                    <li>LOGRUS RY – International Society for youth initiatives</li>
+                  </ul>
+                </li>
+                <li>France</li>
+                <li>
+                  <ul> 
+                    <li>Объединение Русофонов во Франции</li>
+                  </ul>
+                </li>
+                <li>Germany</li>
+                <li>
+                  <ul> 
+                    <li>JunOst e.V.</li>
+                  </ul>
+                </li>
+                <li>Greece</li>
+                <li>
+                  <ul> 
+                    <li>Центр поддержки молодежи “Эгео”</li>
+                  </ul>
+                </li>
+                <li>Israel</li>
+                <li>
+                  <ul> 
+                    <li>Фишка / Атид Бамидбар</li>
+                  </ul>
+                </li>
+                <li>Lithuania</li>
+                <li>
+                  <ul> 
+                    <li>Ассоциация “Молодежная инициативная группа”</li>
+                  </ul>
+                </li>
+                <li>Netherlands</li>
+                <li>
+                  <ul> 
+                    <li>Foundation Moscow Union of Non-Governmental Associations-Societies of Friendship with People of Foreign Countries</li>
+                  </ul>
+                </li>
+                <li>Russia</li>
+                <li>
+                  <ul> 
+                    <li>Московская ассоциация юных лидеров</li>
+                  </ul>
+                </li>
+                <li>Slovakia</li>
+                <li>
+                  <ul> 
+                    <li>Občianske združenie ROSSIJA</li>
+                  </ul>
+                </li>
+                <li>UK</li>
+                <li>
+                  <ul> 
+                    <li>International Publishing Group</li>
+                  </ul>
+                </li>
+                <li>Ukraine</li>
+                <li>
+                  <ul> 
+                    <li>Суспiльна органiзацiя Експеримент</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li class="music-fest section title">
+        <h1>музыкальный фестиваль</h1>
+      </li>
+      <li class="music-fest section">
+        <ul class="music-fest section">
+          <li>
+            <div class="image"><img src="https://lh3.googleusercontent.com/-Ta-N-_8moJ4/TlNwMJf_JuI/AAAAAAAAEDs/HQxoWtOJMo4/s500/IMG_2766.jpg"></div>
+            <div class="description">
+              Приглашаются перспективные музыкальные коллективы, достигшие высокого уровня исполнения, но не имеющие серьезного географического охвата. 
+              Мы хотим дать приоритетную возможность перспективным, талантливым и творческим людям получить международное признание.<br>
+              Преимущество отдается группам, исполняющим авторские песни на русском и другом языке.<br>
+              В Праге каждому коллективу предоставляется отдельное выступление на одной из пражских площадок, 
+              мастер классы и обмен опытом с коллегами из других стран.
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li class="film-fest section title">
+        <h1>фестиваль короткометражных фильмов код места</h1>
+      </li>
+      <li class="film-fest section">
+        <ul>
+          <li>
+            <div class="image"><img src="https://lh3.googleusercontent.com/-Ta-N-_8moJ4/TlNwMJf_JuI/AAAAAAAAEDs/HQxoWtOJMo4/s500/IMG_2766.jpg"></div>
+            <div class="description">
+              Конкурс авторских короткометражных фильмов. 
+              Конкурс авторского кино отражает разнообразие взглядов на жизнь русскоязычного иммигранта в Европе вне зависимости от возраста, социального положения и пола. 
+              Всех участников ждут мастер классы и совместная работа.<br>
+              В фестивальном показе фильмов будет выбран лучший видеоролик. Кроме призов и признания победителя и всю команду ждет увлекательная работа над серьезным проектом.<br>
+              Как говорится, оставайтесь с нами.
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li class="vocal-contest section title">
+        <h1>вокальный конкурс колорит 2013</h1>
+      </li>
+      <li class="vocal-contest section">
+        <ul>
+          <li>
+            <div class="image"><img src="https://lh3.googleusercontent.com/-Ta-N-_8moJ4/TlNwMJf_JuI/AAAAAAAAEDs/HQxoWtOJMo4/s500/IMG_2766.jpg"></div>
+            <div class="description">
+              Из каждой страны приглашается один/а перспективный певец/певица старше 18 лет, не занимавшие ранее призовые места в международных конкурсах.<br>
+              В странах-участницах пройдут отборочные туры, а их победители приедут в Прагу чтобы выборать лучшего вокалиста русскоязычной европы.
+              Вокальный конкурс колорит продолжает серию конкурсов талантов, которые Клуб ПРАгматики проводит в Праге с 2008 года.
+              <div><a>визитка 1</a><a>визитка 2</a><a>визитка 3</a></div>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li class="conference section title">
+        <h1>конференция</h1>
+      </li>
+      <li class="conference section">
+        <ul>
+          <li>
+            <div class="image"><img src="https://lh3.googleusercontent.com/-Ta-N-_8moJ4/TlNwMJf_JuI/AAAAAAAAEDs/HQxoWtOJMo4/s500/IMG_2766.jpg"></div>
+            <div class="description">
+              Реализация проекта фестиваля KOLORITfest возможна только благодаря работе партнеров - организаций, которые в разных странах мира работают над тем, чтобы
+              русскоязычные люди были частью окружающего их общества - в странах, где мы живем, и за из пределами.<br>
+              Нам нравится, когда наша культура встречает другие, и возникает магия.<br>
+              Вместе мы постараемся узнать, как делать это лучше. 
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <div id="bottom-nav">
+      <div id="spotlight">
+        <div class="castings">
+          <div class="title">кастинги<br></div>
+          <div class="dates">7, 14 августа</div>
+        </div>
+        <div class="submit-button-col"><a href="#registration" class="submit-button"><span class="submit-button-padding"><span class="submit">подать </span><span class="request">заявку</span></span></a></div>
+      </div>
     </div>
-    <div id="vocal-contest" class="section">
-      <h1>вокальный конкурс</h1>
+    <div class="registration section title">
+      <h1>регистрация</h1>
     </div>
-    <div id="music-fest" class="section">
-      <h1>музыкальный фестиваль</h1>
-    </div>
-    <div id="film-fest" class="section">
-      <h1>фестиваль короткометражных фильмов</h1>
-    </div>
-    <div id="conference" class="section">
-      <h1>конференция</h1>
-    </div>
-    <div id="bottom-nav" class="section">
-      <h1>Kf</h1>
-      <div id="navigation"><a href="#top">/\</a><a href="#music-fest">музыкальный фестиваль</a><a href="#vocal-contest">вокальный конкурс</a><a href="#film-fest">фестиваль короткометражных фильмов</a><a href="#conference">конференция</a></div>
-    </div>
-    <div id="registration" class="section">
-      <h1>Registration</h1>
+    <div id="registration" class="registration section">
+      <div class="description">
+        Для регистрации заполните пожалуйста анкету ниже. Постарайтесь дать больше интересной информации о себе.
+        <iframe src="https://docs.google.com/forms/d/1HvGuADE0J0uH-H9mYBRqJZ0zpu3ydPNRhV8LIPk-q-k/viewform?embedded=true&f=Times" width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+      </div>
     </div>
     <div id="footer" class="section">
       <h1>footer</h1>

@@ -1,0 +1,381 @@
+@import './semantic/grid.less';
+@import './jquery-jvectormap-1.2.2.css';
+
+@import url(http://fonts.googleapis.com/css?family=Russo+One&subset=latin,cyrillic);
+@import url(http://fonts.googleapis.com/css?family=EB+Garamond&subset=latin,cyrillic);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab&subset=latin,cyrillic);
+
+/* @column-width: 60; */
+@gutter-width: 20;
+@columns: 12;
+@total-width: 100%;
+
+@f_col : #ff7e0d;
+@k_color : #30a8ff;
+@o1_color :#48f40b;
+@l_color : #ff411a;
+@o2_color : #ffe01e;
+@r_color : #10e5c6;
+@i_color : #9c3df2;
+@t_color : #7af41a;
+
+@kk1 : @f_col;
+@kk2 : @k_color;
+@kk3 : @o1_color;
+@kk4 : @l_color;
+@kk5 : @o2_color;
+@kk6 : @r_color;
+@kk7 : @i_color;
+@kk8 : @t_color;
+
+@color-conference : @o2_color;
+@color-vocal-contest : @k_color;
+@color-music-fest : @o1_color;
+@color-film-fest : #6D00A1;
+
+@page-padding : 100px;
+
+
+body
+{
+	margin : 0;
+}
+.topmenu {
+	.push(8);
+	list-style : none;
+	li { 
+		font-family : 'Roboto Slab';
+		font-size : 13px;
+		display : inline 
+	}
+}
+h1
+{
+	font-family: "Russo One";
+	font-size : 50pt;
+	margin-top: 0;
+	padding : 0;
+}
+
+#heading {
+	font-family: "Russo One";
+	height : 700px;
+	background : white;
+	.logo
+	{
+		height : 700px;
+		.column(5);
+		.subtitle
+			{
+				margin-top : -80px;
+				padding-left : @page-padding;
+				font-size : 25pt;
+			}
+		.kolorit
+			{
+				background : url("../images/KOLORITfest-logo.png") no-repeat 40px 70px;
+				height : 400px;
+				color : #E0342A;
+				font-size : 100pt;
+			}
+		.fest
+			{
+				color : white;
+				// color : rgba(255,255,255,0);
+				font-size : 100pt;
+				text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+				margin-top : -100px;
+			}
+	}
+	
+	.firstline { 
+		.subtitle
+			{
+				font-size : 30pt;
+			}
+		.dates
+			{
+				font-size : 50pt;
+				color : @o2_color;
+					line-height : 40pt;
+			}
+	}
+	.news
+	{
+		.column(7);
+		font-family : 'Roboto Slab';
+		font-size : 17px;
+		line-height : 20pt;
+		padding-top : 30px;
+	}
+
+}
+
+.countries
+	{
+		background-color : @kk1;
+		height : 1000px;
+		.image
+		{
+			.column(8);
+			font-family : 'Roboto Slab'; a : "EB Garamond";
+			font-size : 18pt;
+			line-height : 2em;
+			color : white;
+			height : 153px;
+		}
+		
+		.title
+		{
+			font-family : 'Roboto Slab'; a : "EB Garamond";
+			font-size : 20pt;
+			line-height : 2.5em;
+			color : white;
+			text-align : right;
+		}
+		
+		li {
+			list-style : none;
+			line-height : 40px;
+		}
+		
+		.description #map
+		{
+			.column(4);
+			width : 100%;
+			height : 570px;
+			.jvectormap-zoomin, .jvectormap-zoomout
+			{
+				display : none;
+			}
+		}
+		
+		#countries_info li ul li { 
+			background : rgb(255,255,255,.7);
+			font-size : 15px;
+		}
+	}
+
+.vocal-contest
+	{
+		background-color : @color-vocal-contest;
+		amedia screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370)
+		{
+		}
+	}
+.music-fest
+	{
+		background-color : @color-music-fest;
+		amedia screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370)
+		{
+		}
+	}
+	
+.film-fest
+	{
+		background-color : @color-film-fest;
+		amedia screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370)
+		{
+		}
+
+	}
+	
+.conference
+	{
+		background-color : @color-conference;
+		height : 1000px;
+		amedia screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370)
+		{
+		}
+	}
+
+#footer
+	{
+		background-color : #00ADF1;
+		height : 500px;
+	}
+
+
+
+#main-selecttion{
+	padding : 0;
+	margin : 0;
+	ul li { margin : 0px; list-style : none; };
+	ul li.title
+	{
+		list-style : none;
+		padding  : 10px 0px;
+		height : 150px;
+		amedia screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370)
+		{
+			height : 180px;
+		}
+	}
+
+	.section
+		{
+			li { list-style : none }
+			&-title
+			{
+				position : static;
+				amedia screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370)
+				{
+					margin-left : @page-padding/2;
+					height : 150px;
+				}
+				h1
+				{
+					padding-top : 20px;
+					padding-bottom : 40px;
+					margin-left : @page-padding;
+					color : white;
+				}
+			}
+
+			amedia screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370){
+				h1
+				{
+					margin-right : @page-padding;
+					margin-left : @page-padding/2; 
+				}
+			}
+			
+			.left-column
+			{
+				.column(4);
+				img
+				{
+					margin-left : -44px;
+				}
+			}
+			.right-column
+			{
+				.column(8);
+				font-family : 'Roboto Slab'; a : "EB Garamond";
+				font-size : 15pt;
+				line-height : 2em;
+				color : white;
+				padding-left : 20px;
+			}
+
+			a,a:hover,a:active,a:visited
+			{
+				font-family: "Russo One";
+				color : black;
+				margin-left : 50px;
+				width : 20px;
+				line-height: 80px;
+				text-decoration : none;
+			}
+		}
+}
+
+#menu
+{
+	position : fixed;
+	right : 0;
+	top : 0;
+	width : 200px;
+	font-family : "Roboto Slab";
+	font-size : 15px;
+	line-height : 20px;
+	text-align : right;
+	padding-right : 20px;
+	top : 50px;
+	li {
+		list-style : none;
+	}
+}
+
+#bottom-nav
+{
+	display: block;
+	position: fixed;
+	height : 154px;
+	bottom : 0;
+	background : @k_color;
+	font-family : "Russo One";
+	font-size : 60pt;
+
+	#spotlight
+	{
+		height : 134px;
+		.castings
+		{
+			.column(4);
+			display: block;
+			position: relative;
+			width : 600px;
+			height : 134px;
+			left : @page-padding;
+			bottom : 0px;
+			.title {
+				color : @o2_color;
+				height : 0px;
+			}
+			.dates { 
+				padding : 0;
+				margin-top : 0px;
+				color : white; 
+				margin-top : 50px;
+				margin-left : 20px;
+			}
+		}
+		.submit-button-col
+		{
+			.push(8);
+			
+			a.submit-button {
+				&,&:hover,&:active,&:visited
+				{
+					text-decoration : none;
+				}
+				&:hover{
+					background : @o2_color;
+				}
+			}
+			.submit-button
+			{
+				display: block;
+				width : 330px;
+				height : 134px;
+				padding-left : 40px;
+				margin-top : -20px;
+				line-height : 52px;
+				position : relative;
+				border : red 20px solid;
+				.submit-button-padding
+				{
+					display : block;
+					margin-top : 10px;
+					.submit { color : white }
+					.request { color : black  }
+				}
+			}
+		}
+	}
+}
+
+.registration.section-title h1 { color : black }
+
+#registration
+	{
+		.column(12);
+		height : 600px;
+		width : 100%;
+		margin : 0;
+		padding-left : @page-padding;
+		background : white;
+		h1 {
+			color : @color-vocal-contest;
+		}
+		.description
+		{
+			color : black;
+		}
+	}
+
+.expanded-menu
+{
+	color : black;
+}

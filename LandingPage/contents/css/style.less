@@ -1,13 +1,14 @@
 @import './semantic/grid.less';
+@import './jquery-jvectormap-1.2.2.css';
 
 @import url(http://fonts.googleapis.com/css?family=Russo+One&subset=latin,cyrillic);
-@import url(http://fonts.googleapis.com/css?family=EB+Garamond);
+@import url(http://fonts.googleapis.com/css?family=EB+Garamond&subset=latin,cyrillic);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab&subset=latin,cyrillic);
 
-@column-width: 60;
+/* @column-width: 60; */
 @gutter-width: 20;
 @columns: 12;
-
-
+@total-width: 100%;
 
 @f_col : #ff7e0d;
 @k_color : #30a8ff;
@@ -28,287 +29,130 @@
 @kk8 : @t_color;
 
 @color-conference : @o2_color;
-@color-vocal-contest : @o1_color;;
-@color-music-fest : @k_color;
+@color-vocal-contest : @k_color;
+@color-music-fest : @o1_color;
 @color-film-fest : #6D00A1;
 
 @page-padding : 100px;
 
-@total-width: 90%;
 
 body
 {
 	margin : 0;
+	font-family : 'Roboto Slab';
+	font-size : 19px;
 }
-.languages {
-	.push(10);
-	list-style : none;
-	li { display : inline }
-}
+
 h1
 {
 	font-family: "Russo One";
 	font-size : 50pt;
-	margin-top: 0;
-	padding : 0;
 }
 
-#heading {
-	padding-top : 30px;
-	font-family: "Russo One";
-	height : 270px;
-	background : white;
-	.logo
-	{
-		.column(5);
-		.kolorit
-			{
-				background : url("../images/KOLORITfest-logo.png") no-repeat 40px 70px;
-				height : 400px;
-				color : #E0342A;
-				font-size : 100pt;
-			}
-		.fest
-			{
-				color : white;
-				// color : rgba(255,255,255,0);
-				font-size : 100pt;
-				text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-				margin-top : -100px;
-			}
-	}
-	
-	.firstline { 
-		.column(7);
-		.subtitle
-			{
-				font-size : 30pt;
-			}
-		.dates
-			{
-				font-size : 50pt;
-				color : @o2_color;
-				line-height : 40pt;
-			}
-	}
 
-}
-
-#main-selecttion{
-	padding : 0;
+ul#main-selection
+{
 	margin : 0;
-	li.title
-	{
-		padding  : 10px 0px;
-		height : 123px;
-		@media screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370)
-		{
-			height : 200px;
-		}
-	}
-
-}
-
-.countries
-	{
-		background-color : @kk1;
-		height : 1000px;
-	}
-
-.vocal-contest
-	{
-		background-color : @color-vocal-contest;
-		height : 1000px;
-		@media screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370)
-		{
-			height : 2000px;
-		}
-	}
-.music-fest
-	{
-		background-color : @color-music-fest;
-		height : 1000px;
-		@media screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370)
-		{
-			height : 2000px;
-		}
+	padding : 0;
+	
+	
+	li, li ul li { 
+		list-style : none; 
+		display : block;
+		padding : 0;
+		margin : 0;
 	}
 	
-.film-fest
+	color : white;
+	
+	.section-title
 	{
-		background-color : @color-film-fest;
-		height : 1000px;
-		@media screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370)
-		{
-			height : 2000px;
-		}
-
+		padding : 1px 50px;
 	}
 	
-.conference
+	.section
 	{
-		background-color : @color-conference;
-		height : 1000px;
-		@media screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370)
-		{
-			height : 2000px;
+		display : block;
+		padding-bottom : 80px;
+		
+		li { 
+			display : block; 
+			padding : 0;  
+			margin-left : -57px;
+			overflow : auto; 
 		}
-	}
+		
+		.left-column
+			{
+				.column(4);
+			}
 
-#footer
-	{
-		background-color : #00ADF1;
-		height : 500px;
-	}
+		.right-column
+			{
+				.column(7);
+				p:first-child {
+					margin-top : -5px;
+					padding-top : 0;
+					&:first-line {
 
-#registration
-	{
-		height : 1000px;
-	}
-
-#registration
-	{
-		height : 400px;
-		background : silver;
+					}
+				}
+			}
 	}
 	
-.section
-{
-	.title
-	{
-		height : 100px;
-		position : static;
-		@media screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370)
-		{
-			margin-left : @page-padding/2;
-			height : 150px;
-		}
-	}
-
-	h1
-	{
-		.column(12);
-		padding-top : 20px;
-		padding-bottom : 40px;
-		margin-left : @page-padding;
-		color : white;
-		line-height : 0.8em;
-	}
-	@media screen and (max-device-height: 600px), (max-height: 600px), (max-aspect-ratio: 580/370){
-	h1
-		{
-			margin-left : @page-padding/2; 
-		}
-	}
-	
-	.image
-	{
-		.column(3);
-		margin-left : -8px;
-	}
-	.description
-	{
-		.column(7);
-		padding-left : 200px;
-		font-family : 'EB Garamond';
-		font-size : 17pt;
-		line-height : 1.8em;
-		padding-right : 150px;
-	}
-	a,a:hover,a:active,a:visited
-	{
-		font-family: "Russo One";
-		color : black;
-		margin-left : 50px;
-		width : 20px;
-		line-height: 80px;
-		text-decoration : none;
+	&:after {
+		clear:both;
 	}
 }
 
-#menu
-{
-	position : fixed;
-	right : 0;
-	top : 0;
-	width : 200px;
-	background : #eeeeee;
-	font-family : "EB Garamond";
-	font-size : 20px;
-	line-height : 20px;
-	li {
-		list-style : none;
-	}
-}
-
-#bottom-nav
-{
-	display: block;
-	position: fixed;
-	width: 100%;
+.music-fest { background-color : @color-music-fest; }
+.film-fest { background-color : @color-film-fest; }
+.vocal-contest { background-color : @color-vocal-contest; }
+.spotlight { 
+	width : 100%;
+	background-color : @color-vocal-contest;
 	height : 154px;
 	bottom : 0;
-	background : @k_color;
-	font-family : "Russo One";
-	font-size : 60pt;
+	padding-bottom : 0px !important;
+	position : fixed;
 
-	#spotlight
+	font-size : 60pt;
+	font-family : "Russo One";
+	
+	.castings
 	{
-		height : 134px;
-		.castings
+		.column(6);
+		padding-left : @page-padding;
+		margin-top : -20px;
+		.title { margin-top : 0px; color : @color-conference; }
+		.dates { padding-left : 20px; margin-top : -40px; display : block}
+	}
+	
+	.submit-button-col
+	{
+		.push(7);
+		font-size: 60pt;
+		.submit-button a:link, .submit-button a:visited, .submit-button a:active { }
+		.submit-button
 		{
-			.column(4);
 			display: block;
-			position: relative;
-			width : 600px;
+			width : 330px;
 			height : 134px;
-			left : @page-padding + 40px;
-			bottom : 0px;
-			.title {
-				color : @o2_color;
-				height : 0px;
-			}
-			.dates { 
-				padding : 0;
-				margin-top : 0px;
-				color : white; 
-				margin-top : 50px;
-				margin-left : 20px;
-			}
-		}
-		.submit-button-col
-		{
-			.push(8);
-			
-			a.submit-button {
-				&,&:hover,&:active,&:visited
-				{
-					text-decoration : none;
-				}
-				&:hover{
-					background : @o2_color;
-				}
-			}
-			.submit-button
-			{
-				display: block;
-				width : 330px;
-				height : 134px;
-				padding-left : 40px;
-				margin-top : -20px;
-				line-height : 52px;
-				position : relative;
-				border : red 20px solid;
-				.submit-button-padding
-				{
-					display : block;
-					margin-top : 10px;
-					.submit { color : white }
-					.request { color : black  }
-				}
-			}
+			display : block;
+			margin-top : -20px;
+			padding-left : 40px;
+			border : red 20px solid;
+			line-height : 60px;
+			text-decoration : none;
+			color : white;
+			.request { color : black; }
 		}
 	}
 }
+.conference { background-color : @color-conference; }
+.footer { background-color : @color-conference; }
+
+
+
 
 

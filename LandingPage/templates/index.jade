@@ -11,193 +11,101 @@ html(lang='en')
 		script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js')
 		script(src='../js/jquery.smooth-scroll.min.js')
 		script(src='../js/jquery.collapsible-menus.min.js')
+		script(src='../js/jquery-jvectormap-1.2.2.min.js')
+		script(src='../js/jquery-jvectormap-world-mill-en.js')
 		link(href='../css/style.css', rel='stylesheet')
 		link(rel='shortcut icon', href='favicon.png')
 		link(rel='apple-touch-icon', href='apple-touch-icon.png')
+		script(src='../js/main.js')
 
-	script
-		$(document).on("ready", function(){
-			// init fixed menu
-			$(window).scroll(function(){
-					console.log(
-						"document: " + $(document).scrollTop() + "\n" +
-						"bottom-nav: " + $('#bottom-nav').offset().top + "\n" +
-						"registration: " + $('#registration').offset().top + "\n" +
-						"bottom-nav: " + $("#bottom-nav").css("position")
-					)
-						
-						if($("#bottom-nav").css("position") == "fixed" && ($('#registration').offset().top <= $('#bottom-nav').offset().top))
-							$("#bottom-nav").css("position", "static");
-			
-						if($("#bottom-nav").css("position") == "static" && ($(document).scrollTop() + $(window).height()) < $('#registration').offset().top)
-								$("#bottom-nav").css("position", "fixed");
-				})
-				
-			// jquery.smooth-scroll.min.js
-			//$('.navigator').pageScroller({
-			//	navigation: '#navigation',
-			//	animationType: 'easeInOutElastic'
-			//});
-			
-			$(".bottom-nav").on("click",function(){
-				console.log("click!")
-				$(document).scrollTop($('.registration').offset().top + 200);
-			})
-			
-			var v;
-			$('#menu-root').collapsible({
-				effect: 'none',             // The effect to use when expanding and collapsiing the menu. Accepts none, slide, or fade. Default: none.
-				initialCollapse: true       // When true, collapses the menu when the page loads. Default: true
-			});
-			
-			$('#main-selecttion').collapsible({
-				effect: 'slide',             // The effect to use when expanding and collapsiing the menu. Accepts none, slide, or fade. Default: none.
-				initialCollapse: true       // When true, collapses the menu when the page loads. Default: true
-			});
-			
-			console.log(v)
-		})
-		
-	body.no-support-3d#top
-		//- For example this fallback message is only visible when there is `impress-not-supported` class on body.
-
-
-		languages = [{"path":"en", "lang":"eng"}, {"path":"cs", "lang":"čes"}, {"path":"ru", "lang":"рус"}]
-		ul.languages(style="pointer-events: all")
-			each l in languages
-				li
-					if(l.path != page.url.split("/")[1])
-						<a href="/#{l.path}/">#{l.lang}</a>
-					else
-						| #{l.lang}
-		//		a(href="#music-fest") музыкальный фестиваль
-		//		a(href="#vocal-contest") вокальный конкурс
-		//		a(href="#film-fest") фестиваль короткометражных фильмов
-		//		a(href="#conference") П
-		
-		#menu
-			ul#menu-root
-				li Countries
-				li 
-					ul
-						li Belorussia
-						li Germany
-						li Israel
-						li Russia
-						li Ukraine
-						li Czech Republic
-						li UK
-						li Slovakia
-						li Greece
-						li Lithuania
-						li Netherlands
-						li Finland
-						li France
-						li Czech Republic
-				li Music Festival
-				li 
-					ul
-						li a
-						li b
-						li c
-						li d
-				li Film festival
-				li Vocal Competition
-				li Conference
-				li Registration
-			
-		#heading.section
-			.logo
-				.kolorit
-					| 
-					.fest
-						| 
-			.firstline
-				.dates
-					| 3-16 
-					| октября
-					| Прага
-				.subtitle
-					| международный музыкальный фестиваль русскоязычной культуры
-				
-		ul#main-selecttion	
-			li.countries.section.title
-				h1 страны
-			li.countries.section
-				ul
-					li
-						| контент про страны
-			
-			li.music-fest.section.title
+	body#top
+		ul#main-selection
+			li.music-fest.section-title
 				h1 музыкальный фестиваль
+
 			li.music-fest.section
 				ul
 					li
-						.music-fest.section
-						| музыкальный фестиваль content
+						.left-column
+							img(src="https://lh5.googleusercontent.com/-HCgNp-lWkHw/UeQigu92WPI/AAAAAAAAYnk/y-6FDJteaoY/s500/gr1.jpg")
+						.right-column
+							p Приглашаются перспективные музыкальные коллективы, достигшие высокого уровня исполнения, но не имеющие серьезного географического охвата. Мы хотим дать приоритетную возможность перспективным, талантливым и творческим людям получить международное признание.<br>
+							p Преимущество отдается группам, исполняющим авторские песни на русском и другом языке.
+							p В Праге каждому коллективу предоставляется отдельное выступление на одной из пражских площадок, мастер классы и обмен опытом с коллегами из других стран.
 
-			li.film-fest.section.title
-				h1 фестиваль короткометражных фильмов
+			li.film-fest.section-title
+				h1 фестиваль короткометражных фильмов код места
+
 			li.film-fest.section
 				ul
 					li
-						| Film fest content
-			
-			li.vocal-contest.section.title
-				h1 вокальный конкурс
+						.left-column
+							img(src="https://lh6.googleusercontent.com/-tgm98AbTxdc/UeQilod7bEI/AAAAAAAAYn0/HlHFDnkhpXA/s500/IMG_1731.jpg")
+						.right-column									
+							p Конкурс авторских короткометражных фильмов. Конкурс авторского кино отражает разнообразие взглядов на жизнь русскоязычного иммигранта в Европе вне зависимости от возраста, социального положения и пола. 
+							p Всех участников ждут мастер классы и совместная работа.
+							p В фестивальном показе фильмов будет выбран лучший видеоролик. Кроме призов и признания победителя и всю команду ждет увлекательная работа над серьезным проектом.
+							p Как говорится, оставайтесь с нами.
+
+			li.vocal-contest.section-title
+				h1 вокальный конкурс колорит 2013
+
 			li.vocal-contest.section
 				ul
 					li
-						.image
+						.left-column
 							img(src="https://lh3.googleusercontent.com/-Ta-N-_8moJ4/TlNwMJf_JuI/AAAAAAAAEDs/HQxoWtOJMo4/s500/IMG_2766.jpg")
-						.description
-							| KOLORITfest естественным образом продолжает традицию серии мультикультурных русскоязычных конурсов-фестивалей "Колорит", которые Клуб ПРАГматики проводил в Праге в 2009, 2010, 2011 и 2012 годах.
-							| В настоящее время KOLORITfest находится в стадии подготовки, в ходе которой пройдет набор делегатов с помощью открытого конкурса, кастингов, интервью и предварительных отборочных туров.
-							| Расписание мероприятий, новости, полезная информация и контакты будут опубликованы на официальном сайте KOLORITfest по адресу http://koloritfest.org.
-							| Мы призываем спонсоров и медиа-партнеров, связаться с нами по вопросам рекламных возможностей и условий партнерства.
-							| Мы также призываем к творческих профессионалов, энтузиастов и добровольцев, желающих внести свой вклад в фестиваль, связаться с нами, чтобы узнать, как они могут помочь нам сделать это еще событие еще лучше.
-							| Организаторам не терпится увидеть разнообразе красок, которые участники привнесут в фестиваль. Мы уверены, что картина, которую мы вместе нарисуем, будет стоить миллиона слов. Поехали!
+						.right-column									
+							p Из каждой страны приглашается один/а перспективный певец/певица старше 18 лет, не занимавшие ранее призовые места в международных конкурсах.
+							p В странах-участницах пройдут отборочные туры, а их победители приедут в Прагу чтобы выборать лучшего вокалиста русскоязычной европы. 
+							p Вокальный конкурс колорит продолжает серию конкурсов талантов, которые Клуб ПРАгматики проводит в Праге с 2008 года.
 
-							
-							div
-								a визитка 1
-								a визитка 2
-								a визитка 3
-				
-		
-			li.conference.section.title
+			li.conference.section-title
 				h1 конференция
-			
+
 			li.conference.section
 				ul
 					li
-						| конференция content
+						.left-column
+							img(src="https://lh5.googleusercontent.com/-HCgNp-lWkHw/UeQigu92WPI/AAAAAAAAYnk/y-6FDJteaoY/s500/gr1.jpg")
+						.right-column
+							p Реализация проекта фестиваля KOLORITfest возможна только благодаря работе партнеров - организаций, которые в разных странах мира работают над тем, чтобы русскоязычные люди были частью окружающего их общества - в странах, где мы живем, и за из пределами.
+							p Нам нравится, когда наша культура встречает другие, и возникает магия.
+							p Вместе мы постараемся узнать, как делать это лучше.
 
-		#bottom-nav
-			#spotlight
-				.castings
-						.title кастинги<br>
-						.dates 7, 14 августа
+			li.spotlight.section
+					.castings
+						span.title кастинги 
+						span.dates 7, 14 августа
 
-				.submit-button-col
-					a(href="#registration").submit-button
-						span.submit-button-padding
+					.submit-button-col
+						a(href="#registration").submit-button
 							span.submit подать 
 							span.request заявку
-
-				//- a(href="#registration")
-				//- 	span.submit-button
-				//- 		span.submit-button-padding
-				//- 			span.submit подать 
-				//- 			span.request заявку
 							
-		#registration.section
-			h1 регистрация
-			
-		#footer.section
-			h1 footer
-		
-				
-				
-				
-				
+			li.section-title.registration
+				h1 регистрация
+
+			li.registration.section
+				ul
+					li
+						.left-column
+							img(src="https://lh5.googleusercontent.com/-HCgNp-lWkHw/UeQigu92WPI/AAAAAAAAYnk/y-6FDJteaoY/s500/gr1.jpg")
+						.right-column
+							| Для регистрации заполните пожалуйста анкету ниже. Постарайтесь дать больше интересной информации о себе.
+							<iframe src="https://docs.google.com/forms/d/1HvGuADE0J0uH-H9mYBRqJZ0zpu3ydPNRhV8LIPk-q-k/viewform?embedded=true&f=Times" width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+
+			li.footer.section-title
+				h1 footer
+
+			li.footer.section
+				ul
+					li
+						.left-column
+							img(src="https://lh5.googleusercontent.com/-HCgNp-lWkHw/UeQigu92WPI/AAAAAAAAYnk/y-6FDJteaoY/s500/gr1.jpg")
+						.right-column
+							p Реализация проекта фестиваля KOLORITfest возможна только благодаря работе партнеров - организаций, которые в разных странах мира работают над тем, чтобы русскоязычные люди были частью окружающего их общества - в странах, где мы живем, и за из пределами.
+							p Нам нравится, когда наша культура встречает другие, и возникает магия.
+							p Вместе мы постараемся узнать, как делать это лучше.
+
+							
